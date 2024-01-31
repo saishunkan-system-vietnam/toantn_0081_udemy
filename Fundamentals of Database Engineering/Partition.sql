@@ -41,18 +41,12 @@ CREATE TABLE Person2 (
     created_user VARCHAR(20) DEFAULT '9999',
     PRIMARY KEY (id, month)
 ) PARTITION BY LIST (month);
-PARTITION BY LIST (month) (
-    PARTITION pX VALUES IN (1,2,3),
-    PARTITION pH VALUES IN (4,5,6),
-    PARTITION pT VALUES IN (7,8,9),
-    PARTITION pD VALUES IN (10,11,12)
-);
 
-CREATE TABLE pX PARTITION OF sales_region FOR VALUES IN (1,2,3);
+CREATE TABLE pX PARTITION OF Person2 FOR VALUES IN (1,2,3);
 
-CREATE TABLE pY PARTITION OF sales_region FOR VALUES IN (4,5,6);
+CREATE TABLE pY PARTITION OF Person2 FOR VALUES IN (4,5,6);
 
-CREATE TABLE pZ PARTITION OF sales_region FOR VALUES IN (7,8,9);
+CREATE TABLE pZ PARTITION OF Person2 FOR VALUES IN (7,8,9);
 -- value thuộc 1 tập constant, nếu insert ngoài giá trị thì bị lỗi,
 -- nên chọn những cái cố định như ngày , tháng.
 
